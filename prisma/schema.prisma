@@ -1,0 +1,29 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+enum Branch {
+  TURKCE
+  MATEMATIK
+  FEN
+  INKILAP
+  DIN
+  INGILIZCE
+}
+
+model Question {
+  id          String   @id @default(cuid())
+  branch      Branch
+  imageUrl    String
+  note        String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
